@@ -104,14 +104,14 @@ class ArixDEX:
                     )
                     self.log(f"{green}Balance: {white}{balance}")
                 except Exception as e:
-                    self.log(f"{red}Get user info error!!!", e)
+                    self.log(f"{red}Get user info error!!!")
 
                 try:
                     claim = self.arix_claimer(telegram_id=telegram_id).json()
                     claim_balance = claim["balance"]
                     self.log(f"{green}Balance after Claim: {white}{claim_balance}")
                 except Exception as e:
-                    self.log(f"{red}Claim error!!!", e)
+                    self.log(f"{red}Claim error!!!")
 
             print()
             wait_time = 30 * 60
