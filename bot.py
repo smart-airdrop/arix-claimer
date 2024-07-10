@@ -82,26 +82,19 @@ class ArixDEX:
         print(f"{black}[{now}]{reset} {msg}{reset}")
 
     def main(self):
-        self.clear_terminal()
-        print(self.banner)
-        data = open(data_file, "r").read().splitlines()
-        num_acc = len(data)
-        self.log(self.line)
-        self.log(f"{green}Numer of account: {white}{num_acc}")
         while True:
+            self.clear_terminal()
+            print(self.banner)
+            data = open(data_file, "r").read().splitlines()
+            num_acc = len(data)
+            self.log(self.line)
+            self.log(f"{green}Numer of account: {white}{num_acc}")
             for no, telegram_id in enumerate(data):
                 self.log(self.line)
                 self.log(f"{green}Account number: {white}{no+1}/{num_acc}")
                 try:
                     user_info = self.user_info(telegram_id=telegram_id).json()
-                    first_name = user_info["first_name"]
-                    last_name = user_info["last_name"]
-                    user_name = user_info["username"]
-                    tele_id = user_info["id"]
                     balance = user_info["balance"]
-                    self.log(
-                        f"{green}Account Info: {white}{first_name} {last_name} ({user_name} - {tele_id})"
-                    )
                     self.log(f"{green}Balance: {white}{balance}")
                 except Exception as e:
                     self.log(f"{red}Get user info error!!!")
